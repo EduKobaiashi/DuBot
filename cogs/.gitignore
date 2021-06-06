@@ -1,0 +1,3 @@
+# Ignora todos os arquivos do cache de rodar o bot para nao enviar para o github
+*
+!.gitignore
