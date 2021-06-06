@@ -1,0 +1,4 @@
+# Ignora a pasta de configuracoes do meu vscode e o arquivo com as chaves privadas do bot e do banco de dados
+.vscode
+segredos.json
+!.gitignore
