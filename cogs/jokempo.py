@@ -18,7 +18,7 @@ class Jokenpo(commands.Cog):
     @commands.command(
         aliases=["jokenpo"],
         brief="- help ajuda tutorial -",
-        description="Desafia um jogador para pedra papel de tesoura"
+        description="Desafia um jogador para pedra, papel ou tesoura"
     )
     @commands.guild_only()
     @commands.max_concurrency(1, per=commands.BucketType.user, wait=False)
