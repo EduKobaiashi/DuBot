@@ -16,8 +16,8 @@ class Jokenpo(commands.Cog):
         print("Módulo Jokenpo carregado...")
 
     @commands.command(
-        brief="Jokenpo",
         aliases=["jokempo"],
+        brief="- help ajuda tutorial -",
         description="Desafia um jogador para pedra papel de tesoura"
     )
     @commands.guild_only()
@@ -25,8 +25,15 @@ class Jokenpo(commands.Cog):
     @is_blacklisted()
     async def jokenpo(self, ctx, modo: typing.Union[discord.Member, str] = ""):
         if len(ctx.message.mentions) == 0:
-            if modo in ["help", "ajuda", "tutorial", ""]:
-                print("WIP Help")
+            if modo in ["help", "ajuda", "tutorial"]:
+                prefix = ctx.bot.cluster[str(ctx.guild.id)]["config"].find_one({"_id":"config_servidor"})["prefix"]
+                help_embed = discord.Embed(title="Como jogar Jokenpo")
+                help_embed.set_thumbnail(url="https://lh3.googleusercontent.com/cDo7huS5WTjjioOU2ds9t_KBwZ8wz9ttrlKfaafvBuzTkLAIM0jZNbVGXvL4QraXgefS=s150-rw")
+                help_embed.add_field(name="Comando", value=f"```Para jogar, utilize o comando {prefix}jokenpo @User, mencionando o usuário que deseja jogar contra.\n\nO usuário desafiado deve aceitar o desafio selecionando ✅.\n\nO bot então irá mandar uma mensagem privada para cada jogador escolher sua jogada.\n\nApós ambos jogadores escolherem sua jogada, o resultado será atualizado na mensagem original do bot.```")
+                await ctx.send(embed=help_embed)
+            elif modo == "":
+                await ctx.message.delete()
+                await ctx.send("Utilize o sub-comando 'help' para instruções de como utilizar esse comando", delete_after=60)
             else:
                 await ctx.message.delete()
                 await ctx.send("Sub-comando inválido", delete_after=30)
