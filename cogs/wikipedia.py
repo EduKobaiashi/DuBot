@@ -17,7 +17,6 @@ class Wikipedia(commands.Cog):
         print("Módulo Wikipedia carregado...")
 
     @commands.command(
-        brief="Wiki, Wikipedia, Wikirace",
         aliases=["wikipedia", "wikirace"],
         description="Mini-game Wikirace"
     )

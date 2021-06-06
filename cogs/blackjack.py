@@ -19,7 +19,6 @@ class Blackjack(commands.Cog):
         print("Módulo Blackjack carregado...")
 
     @commands.command(
-        brief="Dailyjack",
         description="Comando para ganhar pontos para o blackjack diariamente"
     )
     @commands.guild_only()
@@ -35,8 +34,8 @@ class Blackjack(commands.Cog):
             await ctx.send("Você ja resgatou seus pontos hoje", delete_after=60)
 
     @commands.command(
-        brief="Blackjack",
         aliases=["jack", "jacks"],
+        brief="- help ajuda tutorial - scoreboard placar pontuacao rank leaderboard - balance pontos carteira -",
         description="Mini-game Blackjack"
     )
     @commands.guild_only()
@@ -80,6 +79,7 @@ class Blackjack(commands.Cog):
                 scoreboard_embed = discord.Embed(title=f"Scoreboard Blackjack - Servidor: `{ctx.guild.name}`", description = scoreboard)
                 await ctx.send(embed=scoreboard_embed)
             elif modo in ["help", "ajuda", "tutorial"]:
+                prefix = ctx.bot.cluster[str(ctx.guild.id)]["config"].find_one({"_id":"config_servidor"})["prefix"]
                 help_embed = discord.Embed(title="Como jogar Blackjack")
                 help_embed.set_thumbnail(url="https://cdn1.iconfinder.com/data/icons/gambling-26/128/gambling-10-512.png")
                 help_embed.add_field(name="Objetivo do jogo", value="```O objetivo de qualquer mão de Blackjack é derrotar o dealer. Para fazer isso, você deve ter uma mão em que a pontuação seja mais elevada do que a mão do dealer, mas não exceda 21 no valor total. Como alternativa, você pode ganhar tendo uma pontuação menor que 22 quando o valor da mão do dealer ultrapassar 21. Quando o valor total da sua mão for 22 ou mais, você vai automaticamente perder qualquer valor apostado.```", inline=False)
@@ -89,7 +89,7 @@ class Blackjack(commands.Cog):
                 help_embed.add_field(name="2️⃣ - Dobrar", value="```Você pode colocar uma aposta adicional, igual à aposta inicial, em troca de apenas mais uma carta para a sua mão, após a qual você irá automaticamente manter.```", inline=False)
                 help_embed.add_field(name="Mão da casa", value="```A casa deve bater até que alcance uma contagem de 17 ou mais.```", inline=False)
                 help_embed.add_field(name="Blackjack", value="```A mão mais elevada no blackjack é um Ás e uma carta de 10 pontos e é chamada justamente de blackjack. Um blackjack paga 1.5x sua aposta.```", inline=False)
-                help_embed.add_field(name="Comando", value=f"```{ctx.prefix}dailyjack - Para conseguir 10 pontos (diariamente)\n\n{ctx.prefix}blackjack balance - Para ver quantos pontos você tem\n\n{ctx.prefix}blackjack <valor inteiro> - Para fazer uma aposta e jogar blackjack (Aposta mínima: 1)\n\n{ctx.prefix}blackjack scoreboard - Para ver as pontuações do servidor```")
+                help_embed.add_field(name="Comando", value=f"```{prefix}dailyjack - Para conseguir 10 pontos (diariamente)\n\n{prefix}blackjack balance - Para ver quantos pontos você tem\n\n{prefix}blackjack <valor inteiro> - Para fazer uma aposta e jogar blackjack (Aposta mínima: 1)\n\n{prefix}blackjack scoreboard - Para ver as pontuações do servidor```")
                 await ctx.send(embed=help_embed)
             elif modo == "":
                 await ctx.message.delete()

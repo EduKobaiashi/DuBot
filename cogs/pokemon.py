@@ -28,7 +28,6 @@ class Pokemon(commands.Cog):
         return poke, poke_type, url_imagem, url_icon
 
     @commands.command(
-        brief="Poke, Pokemon",
         aliases=["pokemon"],
         description="Gif aleatório de um pokemon entre 1 à 493 na pokedex"
     )

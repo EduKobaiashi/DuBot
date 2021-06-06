@@ -15,7 +15,6 @@ class Default(commands.Cog):
         print("Módulo Default carregado...")
 
     @commands.command(
-        brief="Prefix",
         description="Mudar o prefix do bot no servidor"
         )
     @commands.has_permissions(administrator=True)
@@ -26,7 +25,6 @@ class Default(commands.Cog):
         await ctx.send(f"Prefix mudado para `{prefix}` com sucesso")
 
     @commands.command(
-        brief="Blacklist",
         description="Gerencia a blacklist do servidor"
     )
     @commands.has_permissions(administrator=True)
@@ -166,7 +164,6 @@ class Default(commands.Cog):
 
 
     @commands.command(
-        brief="Comandos",
         aliases=["help"],
         description="Mostra todos os comandos disponíveis"
     )
@@ -175,6 +172,7 @@ class Default(commands.Cog):
         for comando in sorted(ctx.bot.commands, key=lambda x: x.cog_name):
             if comando.description in ["debug", "beta", None]:
                 continue
+
             aliases = "Aliases: "
             if comando.aliases:
                 for i, alias in enumerate(comando.aliases):
@@ -185,11 +183,27 @@ class Default(commands.Cog):
                 aliases += "\n\n"
             else:
                 aliases = ""
-            comandos.add_field(name=str(comando.name), value= "```" + aliases + str(comando.description) + "```", inline=False)
+
+            subcomandos = "Subcomandos:"
+            if comando.brief:
+                brief = comando.brief.split(" ")
+                for i, subcomando in enumerate(brief):
+                    if i == len(brief)-1:
+                        continue
+                    elif subcomando == "-":
+                        subcomandos += "\n🞄 "
+                    else:
+                        if brief[i+1] == "-":
+                            subcomandos += subcomando
+                        else:
+                            subcomandos += subcomando + ", "
+                subcomandos += "\n\n"
+            else:
+                subcomandos = ""
+            comandos.add_field(name=str(comando.name), value= "```" + aliases + subcomandos + str(comando.description) + "```", inline=False)
         await ctx.send(embed=comandos)
 
     @commands.command(
-        brief="Testes",
         aliases=["debug"],
         description="debug"
     )
