@@ -170,7 +170,7 @@ class Default(commands.Cog):
     async def comandos(self, ctx):
         comandos = discord.Embed(title="Comandos disponíveis")
         for comando in sorted(ctx.bot.commands, key=lambda x: x.cog_name):
-            if comando.description in ["debug", "beta", None]:
+            if comando.description in ["debug", "beta", None] or comando.hidden or not comando.enabled:
                 continue
 
             aliases = "Aliases: "

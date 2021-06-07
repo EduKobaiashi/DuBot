@@ -39,6 +39,7 @@ print(f"Versão discord.py: {discord.__version__}")
 intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None, intents=intents)
+bot.owner_id = 313792791887216640
 
 # Current working directory
 bot.cwd = str(Path(__file__).parents[0])
@@ -109,5 +110,7 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.errors.MaxConcurrencyReached):
         if error.per == commands.BucketType.user:
             await ctx.send("Esse comando só é permitido um por vez por usuário")
+    elif isinstance(error, commands.errors.DisabledCommand):
+        await ctx.send("Esse comando está desabilitado")
 
 bot.run(bot.token)
