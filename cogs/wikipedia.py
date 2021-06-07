@@ -30,9 +30,9 @@ class Wikipedia(commands.Cog):
             if modo in ["help", "ajuda", "tutorial"]:
                 help_embed = discord.Embed(title="Como jogar Wikirace")
                 help_embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Wikipedia_Logo_1.0.png/768px-Wikipedia_Logo_1.0.png")
-                help_embed.add_field(name="Objetivo do jogo", value="```No Wikirace você tera uma página de inicio e fim, seu objetivo é chegar no fim através das referencias dentro de cada página```", inline=False)
-                help_embed.add_field(name="Regras", value="```🞄 Você não pode voltar entre páginas, depois de entrar em uma você só pode sair dela através de outra referencia\n\n🞄 Você só pode utilizar uma aba do navegador, não pode abrir os links em novas abas\n\n🞄 Você só pode utilizar links no corpo da página```", inline=False)
-                help_embed.add_field(name="🎲 - Novo inicio", value="```Para sortear outro inicio aleatório, selecione o 🎲```", inline=False)
+                help_embed.add_field(name="Objetivo do jogo", value="```No Wikirace você terá uma página de inicio e fim, seu objetivo é chegar no fim através das referências dentro de cada página```", inline=False)
+                help_embed.add_field(name="Regras", value="```🞄 Você não pode voltar entre páginas, depois de entrar em uma você só pode sair dela através de outra referência\n\n🞄 Você só pode utilizar uma aba do navegador, não pode abrir os links em novas abas\n\n🞄 Você só pode utilizar links no corpo da página```", inline=False)
+                help_embed.add_field(name="🎲 - Novo início", value="```Para sortear outro início aleatório, selecione o 🎲```", inline=False)
                 help_embed.add_field(name="🏁 - Novo fim", value="```Para sortear outro fim aleatório, selecione o 🏁```", inline=False)
                 help_embed.add_field(name="⏱️ - Iniciar partida", value="```Para iniciar a partida, ambos os jogadores devem selecionar ⏱️```", inline=False)
                 help_embed.add_field(name="🚪 - Cancelar partida", value="```Para cancelar a partida```", inline=False)
