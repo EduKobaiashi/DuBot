@@ -32,7 +32,6 @@ class Default(commands.Cog):
     @is_blacklisted()
     async def blacklist(self, ctx):
         embed_blacklist = discord.Embed(title="Menu: Blacklist", description="```✅ - Adicionar à blacklist\n🅱️ - Remover da blacklist\n📖 - Consultar blacklist```")
-        #embed_blacklist.add_field(name="Opções", value="```✅ - Adicionar à blacklist\n🅱️ - Remover da blacklist\n📖 - Consultar blacklist```")
         menu_blacklist = await ctx.send(embed=embed_blacklist)
         await menu_blacklist.add_reaction("✅")
         await menu_blacklist.add_reaction("🅱️")
