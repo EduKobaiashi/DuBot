@@ -164,6 +164,10 @@ class Jokenpo(commands.Cog):
                             embed_servidor.add_field(name=f"{modo.name} jogou:", value=f"{emoji_p2}", inline=False)
 
                         await menu_servidor.edit(embed=embed_servidor)
-                
+                else:
+                    await ctx.message.delete()
+                    await menu_servidor.delete()
+                    await ctx.send(f"{modo.name} não aceitou o desafio, partida cancelada", delete_after=60)
+
 def setup(bot):
     bot.add_cog(Jokenpo(bot))
